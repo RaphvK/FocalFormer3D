@@ -1,7 +1,7 @@
 # Copyright (c) OpenMMLab. All rights reserved.
 import torch
 
-from mmdet3d.ops.iou3d.iou3d_utils import nms_gpu, nms_normal_gpu, boxes_iou_bev
+from mmcv.ops import boxes_iou_bev, nms_bev as nms_gpu, nms_normal_bev as nms_normal_gpu  # mmdet3d>=1.0.0rc
 from mmdet3d.core.bbox import bbox3d2result, bbox3d_mapping_back, xywhr2xyxyr
 from mmdet3d.core.bbox import (CameraInstance3DBoxes, DepthInstance3DBoxes,
                                LiDARInstance3DBoxes, box_np_ops)

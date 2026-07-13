@@ -23,7 +23,7 @@ from mmdet3d.core import (circle_nms, draw_heatmap_gaussian, gaussian_radius,
 from mmdet3d.core.bbox.structures.utils import rotation_3d_in_axis
 from mmdet3d.models.builder import HEADS, build_loss
 from mmdet3d.models.utils import clip_sigmoid
-from mmdet3d.ops.iou3d.iou3d_utils import nms_gpu
+from mmcv.ops import nms_bev as nms_gpu  # mmdet3d>=1.0.0rc
 
 from projects.mmdet3d_plugin.models.utils.utils import MLP, gen_sineembed_for_position, gen_sineembed_for_position_all
 from projects.mmdet3d_plugin.models.utils.transformer import *
@@ -1372,7 +1372,7 @@ class FocalDecoder(nn.Module):
                                     boxes_for_nms,
                                     top_scores,
                                     thresh=task['radius'],
-                                    pre_maxsize=self.test_cfg['pre_maxsize'],
+                                    pre_max_size=self.test_cfg['pre_maxsize'],
                                     post_max_size=self.test_cfg['post_maxsize'],
                                 )
                         else:
@@ -1612,7 +1612,7 @@ class FocalDecoder(nn.Module):
                                     boxes_for_nms,
                                     top_scores,
                                     thresh=task['radius'],
-                                    pre_maxsize=self.test_cfg['pre_maxsize'],
+                                    pre_max_size=self.test_cfg['pre_maxsize'],
                                     post_max_size=self.test_cfg['post_maxsize'],
                                 )
                         else:
